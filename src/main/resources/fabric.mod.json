@@ -1,0 +1,33 @@
+{
+    "schemaVersion": 1,
+    "id": "hypixel-auto-complete",
+    "version": "${version}",
+    "name": "Hypixel Auto Complete",
+    "description": "Adds tab completions for common commands on Hypixel.",
+    "authors": [
+        "Alex"
+    ],
+    "contact": {
+        "sources": "https://github.com/OperationPotato/HypixelAutoComplete"
+    },
+    "icon": "assets/hypixel-auto-complete/icon.png",
+    "environment": "client",
+    "entrypoints": {
+        "client": [
+            {
+                "value": "com.operationpotato.hypixelautocomplete.HypixelAutoComplete",
+                "adapter": "kotlin"
+            }
+        ]
+    },
+    "mixins": [
+        "hypixel-auto-complete.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=${loader_version}",
+        "minecraft": "~${minecraft_version}",
+        "java": ">=${java_version}",
+        "fabric-api": ">=${fabric_version}",
+        "fabric-language-kotlin": "${fabric_kotlin_version}"
+    }
+}
