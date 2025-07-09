@@ -41,7 +41,7 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
 
-    modImplementation "net.azureaaron:hm-api:${project.hm_api_version}"
+    include modImplementation("net.azureaaron:hm-api:${project.hm_api_version}")
     modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:${project.dev_auth_version}")
 }
 
@@ -49,9 +49,9 @@ processResources {
     filesMatching("fabric.mod.json") {
         expand(
                 "version": project.version,
-                "loader_version": project.loader_version,
-                "minecraft_version": project.minecraft_version,
-                "fabric_version": project.fabric_version,
+//                "loader_version": project.loader_version,
+//                "minecraft_version": project.minecraft_version,
+//                "fabric_version": project.fabric_version,
                 "fabric_kotlin_version": project.fabric_kotlin_version,
                 "java_version": 21
         )
