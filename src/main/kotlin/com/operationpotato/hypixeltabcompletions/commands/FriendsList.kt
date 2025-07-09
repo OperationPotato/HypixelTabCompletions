@@ -1,9 +1,10 @@
-package com.operationpotato.hypixelautocomplete.commands
+package com.operationpotato.hypixeltabcompletions.commands
 
 import com.mojang.brigadier.arguments.IntegerArgumentType
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import com.mojang.brigadier.builder.RequiredArgumentBuilder
 import com.mojang.brigadier.tree.LiteralCommandNode
+import com.operationpotato.hypixeltabcompletions.utils.Utils
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.argument
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource
@@ -14,6 +15,7 @@ object FriendsList {
 
     private val rawCommandNode: LiteralArgumentBuilder<FabricClientCommandSource> =
         literal("fl")
+            .requires(Utils.onHypixel)
             .then(pageArgument)
 
     @JvmStatic

@@ -1,4 +1,4 @@
-package com.operationpotato.hypixelautocomplete.commands
+package com.operationpotato.hypixeltabcompletions.commands
 
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.IntegerArgumentType
@@ -6,6 +6,7 @@ import com.mojang.brigadier.arguments.StringArgumentType
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import com.mojang.brigadier.builder.RequiredArgumentBuilder
 import com.mojang.brigadier.tree.LiteralCommandNode
+import com.operationpotato.hypixeltabcompletions.utils.Utils
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.argument
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource
@@ -29,6 +30,7 @@ object Friend {
 
     private val rawCommandNode: LiteralArgumentBuilder<FabricClientCommandSource> =
         literal("friend")
+            .requires(Utils.onHypixel)
             .then(literal("accept").then(playerArgument))
             .then(literal("add").then(playerArgument))
             .then(literal("deny").then(playerArgument))

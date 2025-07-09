@@ -1,10 +1,11 @@
-package com.operationpotato.hypixelautocomplete.utils
+package com.operationpotato.hypixeltabcompletions.utils
 
 import net.azureaaron.hmapi.network.packet.s2c.HypixelS2CPacket
-import net.azureaaron.hmapi.network.packet.v2.s2c.PartyInfoS2CPacket
+import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.network.ClientPlayNetworkHandler
 import java.util.UUID
+import java.util.function.Predicate
 
 object Utils {
     val client: MinecraftClient = MinecraftClient.getInstance()
@@ -15,6 +16,10 @@ object Utils {
         val brand = networkHandler.brand ?: return false
 
         return brand.contains("Hypixel")
+    }
+
+    val onHypixel = Predicate<FabricClientCommandSource> {
+        isOnHypixel()
     }
 
     fun getNameFromUUID(playerUUID: UUID): String {

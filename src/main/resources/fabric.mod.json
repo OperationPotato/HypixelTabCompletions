@@ -1,27 +1,27 @@
 {
     "schemaVersion": 1,
-    "id": "hypixel-auto-complete",
+    "id": "hypixel-tab-completions",
     "version": "${version}",
-    "name": "Hypixel Auto Complete",
+    "name": "Hypixel Tab Completions",
     "description": "Adds tab completions for common commands on Hypixel.",
     "authors": [
         "Alex"
     ],
     "contact": {
-        "sources": "https://github.com/OperationPotato/HypixelAutoComplete"
+        "sources": "https://github.com/OperationPotato/HypixelTabCompletions"
     },
-    "icon": "assets/hypixel-auto-complete/icon.png",
+    "icon": "assets/hypixel-tab-completions/icon.png",
     "environment": "client",
     "entrypoints": {
         "client": [
             {
-                "value": "com.operationpotato.hypixelautocomplete.HypixelAutoComplete",
+                "value": "com.operationpotato.hypixeltabcompletions.HypixelTabCompletions",
                 "adapter": "kotlin"
             }
         ]
     },
     "mixins": [
-        "hypixel-auto-complete.mixins.json"
+        "hypixel-tab-completions.mixins.json"
     ],
     "depends": {
         "fabricloader": ">=${loader_version}",

@@ -1,11 +1,11 @@
-package com.operationpotato.hypixelautocomplete.commands
+package com.operationpotato.hypixeltabcompletions.commands
 
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import com.mojang.brigadier.builder.RequiredArgumentBuilder
 import com.mojang.brigadier.tree.LiteralCommandNode
-import com.operationpotato.hypixelautocomplete.utils.Utils
+import com.operationpotato.hypixeltabcompletions.utils.Utils
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.argument
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource
@@ -30,6 +30,7 @@ object Party {
 
     private val rawCommandNode: LiteralArgumentBuilder<FabricClientCommandSource> =
         literal("party")
+            .requires(Utils.onHypixel)
             .then(literal("accept").then(playerArgument))
             .then(literal("invite").then(playerArgument))
 

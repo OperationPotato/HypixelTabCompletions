@@ -1,6 +1,6 @@
 {
 	"required": true,
-	"package": "com.operationpotato.hypixelautocomplete.mixin",
+	"package": "com.operationpotato.hypixeltabcompletions.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"client": [
 		"CommandTreeMixin"

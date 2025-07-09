@@ -1,6 +1,6 @@
-# Hypixel Auto Complete
+# Hypixel Tab Completions
 
-A simple 1.21.5 Fabric mod to add auto-completion for various Hypixel commands.
+A simple 1.21.5 Fabric mod to add tab completions for various Hypixel commands.
 
 ## Supported Commands
 

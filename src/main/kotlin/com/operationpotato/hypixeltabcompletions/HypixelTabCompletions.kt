@@ -1,20 +1,20 @@
-package com.operationpotato.hypixelautocomplete
+package com.operationpotato.hypixeltabcompletions
 
 import com.mojang.brigadier.CommandDispatcher
-import com.operationpotato.hypixelautocomplete.commands.Friend
-import com.operationpotato.hypixelautocomplete.commands.Guild
-import com.operationpotato.hypixelautocomplete.commands.Party
-import com.operationpotato.hypixelautocomplete.utils.Utils
+import com.mojang.logging.LogUtils
+import com.operationpotato.hypixeltabcompletions.commands.Friend
+import com.operationpotato.hypixeltabcompletions.commands.Guild
+import com.operationpotato.hypixeltabcompletions.commands.Party
+import com.operationpotato.hypixeltabcompletions.utils.Utils
 import net.azureaaron.hmapi.events.HypixelPacketEvents
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource
 import net.minecraft.command.CommandRegistryAccess
 import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 
-object HypixelAutoComplete : ClientModInitializer {
-    val logger: Logger = LoggerFactory.getLogger("hypixel-auto-complete")
+object HypixelTabCompletions : ClientModInitializer {
+    val logger: Logger = LogUtils.getLogger()
 
     override fun onInitializeClient() {
         ClientCommandRegistrationCallback.EVENT.register(::registerCommandAliases)
