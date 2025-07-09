@@ -8,7 +8,7 @@ import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.argument
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource
 
-object FriendList {
+object FriendsList {
     private val pageArgument: RequiredArgumentBuilder<FabricClientCommandSource, Int> =
         argument("page", IntegerArgumentType.integer(1))
 

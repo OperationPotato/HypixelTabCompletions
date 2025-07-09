@@ -20,7 +20,7 @@ public class CommandTreeMixin {
             case "party" -> Party.getCommandNode();
             case "guild" -> Guild.getCommandNode();
             case "friend" -> Friend.getCommandNode();
-            case "fl" -> FriendList.getCommandNode();
+            case "fl" -> FriendsList.getCommandNode();
             case "chat" -> Chat.getCommandNode();
             case "status" -> Status.getCommandNode();
             default -> original;
