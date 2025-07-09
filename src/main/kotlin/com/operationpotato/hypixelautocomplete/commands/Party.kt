@@ -14,13 +14,13 @@ import net.minecraft.command.EntitySelector
 import net.minecraft.command.argument.EntityArgumentType
 
 object Party {
+    private val playerArgument: RequiredArgumentBuilder<FabricClientCommandSource, EntitySelector> =
+        argument("player", EntityArgumentType.player())
+
     private val partyMemberSuggestion: RequiredArgumentBuilder<FabricClientCommandSource, String> =
         argument("member", StringArgumentType.string()).suggests { ctx, builder ->
             CommandSource.suggestMatching(Utils.partyMembers, builder)
         }
-
-    private val playerArgument: RequiredArgumentBuilder<FabricClientCommandSource, EntitySelector> =
-        argument("player", EntityArgumentType.player())
 
     private val messageArgument: RequiredArgumentBuilder<FabricClientCommandSource, String> =
         argument("message", StringArgumentType.greedyString())
@@ -31,11 +31,12 @@ object Party {
     private val rawCommandNode: LiteralArgumentBuilder<FabricClientCommandSource> =
         literal("party")
             .then(literal("accept").then(playerArgument))
+            .then(literal("invite").then(playerArgument))
+
             .then(literal("demote").then(partyMemberSuggestion))
             .then(literal("kick").then(partyMemberSuggestion))
             .then(literal("promote").then(partyMemberSuggestion))
             .then(literal("transfer").then(partyMemberSuggestion))
-            .then(literal("invite").then(playerArgument))
 
             .then(literal("chat").then(messageArgument))
 
