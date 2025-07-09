@@ -25,10 +25,10 @@
         "hypixel-tab-completions.mixins.json"
     ],
     "depends": {
-        "fabricloader": ">=0.16.7",
-        "minecraft": "~1.21.2",
+        "fabricloader": ">=${loader_version}",
+        "minecraft": "~${minecraft_version}",
         "java": ">=${java_version}",
-        "fabric-api": ">=0.106.0+1.21.2",
+        "fabric-api": ">=${fabric_version}",
         "fabric-language-kotlin": ">=${fabric_kotlin_version}"
     }
 }

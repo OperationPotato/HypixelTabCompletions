@@ -4,7 +4,7 @@ plugins {
     id "org.jetbrains.kotlin.jvm" version "2.2.0"
 }
 
-version = project.mod_version + "+" + project.minecraft_version
+version = project.mod_version + "+" + project.supported_minecraft_versions
 group = project.maven_group
 
 base {
@@ -49,9 +49,9 @@ processResources {
     filesMatching("fabric.mod.json") {
         expand(
                 "version": project.version,
-//                "loader_version": project.loader_version,
-//                "minecraft_version": project.minecraft_version,
-//                "fabric_version": project.fabric_version,
+                "loader_version": project.minimum_loader_version,
+                "minecraft_version": project.minimum_minecraft_version,
+                "fabric_version": project.minimum_fabric_version,
                 "fabric_kotlin_version": project.fabric_kotlin_version,
                 "java_version": 21
         )
