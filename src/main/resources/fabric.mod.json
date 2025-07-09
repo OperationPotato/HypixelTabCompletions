@@ -8,7 +8,8 @@
         "Alex"
     ],
     "contact": {
-        "sources": "https://github.com/OperationPotato/HypixelTabCompletions"
+        "sources": "https://github.com/OperationPotato/HypixelTabCompletions",
+        "issues": "https://github.com/OperationPotato/HypixelTabCompletions/issues"
     },
     "icon": "assets/hypixel-tab-completions/icon.png",
     "environment": "client",
