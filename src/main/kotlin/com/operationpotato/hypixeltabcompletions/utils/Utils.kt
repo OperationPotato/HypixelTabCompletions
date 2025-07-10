@@ -36,12 +36,6 @@ object Utils {
     }
 
     fun getNameFromUUID(playerUUID: UUID): String {
-        if (uuidUsernameMap.contains(playerUUID)) {
-            return uuidUsernameMap.get(playerUUID) ?: ""
-        }
-
-        val username = fetchNameFromUUID(playerUUID)
-        uuidUsernameMap.put(playerUUID, username)
-        return username
+        return uuidUsernameMap.computeIfAbsent(playerUUID, ::fetchNameFromUUID)
     }
 }
