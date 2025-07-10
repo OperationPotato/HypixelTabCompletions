@@ -1,6 +1,6 @@
 package com.operationpotato.hypixeltabcompletions.utils
 
-import net.azureaaron.hmapi.network.packet.s2c.HypixelS2CPacket
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.network.ClientPlayNetworkHandler
@@ -8,8 +8,8 @@ import java.util.UUID
 import java.util.function.Predicate
 
 object Utils {
-    val client: MinecraftClient = MinecraftClient.getInstance()
-    val partyMembers: ArrayList<String> = ArrayList()
+    private val client: MinecraftClient = MinecraftClient.getInstance()
+    private val uuidUsernameMap = Object2ObjectOpenHashMap<UUID, String>()
 
     fun isOnHypixel(): Boolean {
         val networkHandler: ClientPlayNetworkHandler = client.networkHandler ?: return false
@@ -22,27 +22,26 @@ object Utils {
         isOnHypixel()
     }
 
-    fun getNameFromUUID(playerUUID: UUID): String {
+    private fun fetchNameFromUUID(playerUUID: UUID): String {
         val world = client.world
         if (world != null) {
             val entity = world.getEntity(playerUUID)
             if (entity != null) return entity.name.string
         }
 
+        // May need to be replaced with something else in the future...
         val profileResult = client.sessionService.fetchProfile(playerUUID, false)
         if (profileResult == null) return ""
         return profileResult.profile.name
     }
 
-    fun onPartyInfoReceived(packet: HypixelS2CPacket) {
-        /*
-        if (packet !is PartyInfoS2CPacket) return
-        val memberUUIDs = packet.members ?: return
-
-        partyMembers.clear()
-        memberUUIDs.keys.forEach { uuid ->
-            partyMembers.add(getNameFromUUID(uuid))
+    fun getNameFromUUID(playerUUID: UUID): String {
+        if (uuidUsernameMap.contains(playerUUID)) {
+            return uuidUsernameMap.get(playerUUID) ?: ""
         }
-        */
+
+        val username = fetchNameFromUUID(playerUUID)
+        uuidUsernameMap.put(playerUUID, username)
+        return username
     }
 }

@@ -5,7 +5,7 @@ import com.mojang.logging.LogUtils
 import com.operationpotato.hypixeltabcompletions.commands.Friend
 import com.operationpotato.hypixeltabcompletions.commands.Guild
 import com.operationpotato.hypixeltabcompletions.commands.Party
-import com.operationpotato.hypixeltabcompletions.utils.Utils
+import com.operationpotato.hypixeltabcompletions.utils.PartyUtils
 import net.azureaaron.hmapi.events.HypixelPacketEvents
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback
@@ -18,7 +18,10 @@ object HypixelTabCompletions : ClientModInitializer {
 
     override fun onInitializeClient() {
         ClientCommandRegistrationCallback.EVENT.register(::registerCommandAliases)
-        HypixelPacketEvents.PARTY_INFO.register(Utils::onPartyInfoReceived)
+
+        HypixelPacketEvents.HELLO.register(PartyUtils::onHelloReceived)
+        HypixelPacketEvents.PARTY_INFO.register(PartyUtils::onPartyInfoReceived)
+        HypixelPacketEvents.PLAYER_INFO.register(PartyUtils::onPlayerInfoReceived)
     }
 
     fun registerCommandAliases(dispatcher: CommandDispatcher<FabricClientCommandSource>, registryAccess: CommandRegistryAccess) {
