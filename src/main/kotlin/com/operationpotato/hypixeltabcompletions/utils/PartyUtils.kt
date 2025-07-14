@@ -75,7 +75,8 @@ object PartyUtils {
     }
 
     fun requestPartyInfo(force: Boolean = false) {
-        if (force || (System.currentTimeMillis() - partyLastUpdated > 30_000)) {
+        if (!Utils.isOnHypixel()) return
+        if (force || (System.currentTimeMillis() - partyLastUpdated > 10_000)) {
             partyLastUpdated = System.currentTimeMillis() // Update this here to prevent sending multiple requests while waiting for the previous request to come back
             HypixelNetworking.sendPartyInfoC2SPacket(2)
         }

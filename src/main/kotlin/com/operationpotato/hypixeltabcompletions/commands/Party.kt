@@ -57,8 +57,15 @@ object Party {
     @JvmStatic
     val commandNode: LiteralCommandNode<FabricClientCommandSource> = rawCommandNode.build()
 
+    // Because /p is also registered as a server command, we have to do it like above
+    val aliasRawCommandNode: LiteralArgumentBuilder<FabricClientCommandSource> =
+        literal("p").redirect(commandNode)
+
+    @JvmStatic
+    val aliasCommandNode: LiteralCommandNode<FabricClientCommandSource> = aliasRawCommandNode.build()
+
     fun registerAliases(dispatcher: CommandDispatcher<FabricClientCommandSource>) {
         dispatcher.register(rawCommandNode)
-        dispatcher.register(literal("p").redirect(commandNode))
+        dispatcher.register(aliasRawCommandNode)
     }
 }
