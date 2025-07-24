@@ -8,6 +8,7 @@
         "Alex"
     ],
     "contact": {
+        "homepage": "https://modrinth.com/mod/hypixel-tab-completions",
         "sources": "https://github.com/OperationPotato/HypixelTabCompletions",
         "issues": "https://github.com/OperationPotato/HypixelTabCompletions/issues"
     },
