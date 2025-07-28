@@ -5,6 +5,8 @@ import com.mojang.logging.LogUtils
 import com.operationpotato.hypixeltabcompletions.commands.Friend
 import com.operationpotato.hypixeltabcompletions.commands.Guild
 import com.operationpotato.hypixeltabcompletions.commands.Party
+import com.operationpotato.hypixeltabcompletions.commands.Reply
+import com.operationpotato.hypixeltabcompletions.commands.Whisper
 import com.operationpotato.hypixeltabcompletions.utils.PartyUtils
 import net.azureaaron.hmapi.events.HypixelPacketEvents
 import net.fabricmc.api.ClientModInitializer
@@ -28,5 +30,7 @@ object HypixelTabCompletions : ClientModInitializer {
         Friend.registerAliases(dispatcher)
         Guild.registerAliases(dispatcher)
         Party.registerAliases(dispatcher)
+        Whisper.registerAliases(dispatcher)
+        Reply.registerAliases(dispatcher)
     }
 }

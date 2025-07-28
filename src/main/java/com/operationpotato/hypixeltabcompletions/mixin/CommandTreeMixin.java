@@ -27,6 +27,7 @@ public class CommandTreeMixin {
             case "fl" -> FriendsList.getCommandNode();
             case "chat" -> Chat.getCommandNode();
             case "status" -> Status.getCommandNode();
+            case "r" -> Reply.getCommandNode();
             default -> original;
         };
     }
