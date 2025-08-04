@@ -34,21 +34,21 @@ object Party {
         literal("party")
             .requires(Utils.onHypixel)
             .then(literal("accept").then(playerArgument))
-            .then(literal("invite").then(playerArgument).requires(PartyUtils.partyModerator))
+            .then(literal("invite").then(playerArgument).requires { ctx -> PartyUtils.partyModerator.test(ctx) || !PartyUtils.isInParty})
 
             .then(literal("demote").then(partyMemberSuggestion).requires(PartyUtils.partyLeader))
             .then(literal("kick").then(partyMemberSuggestion).requires(PartyUtils.partyModerator))
             .then(literal("promote").then(partyMemberSuggestion).requires(PartyUtils.partyLeader))
             .then(literal("transfer").then(partyMemberSuggestion).requires(PartyUtils.partyLeader))
 
-            .then(literal("chat").then(messageArgument))
+            .then(literal("chat").then(messageArgument).requires(PartyUtils.inParty))
 
             .then(literal("settings").requires(PartyUtils.partyLeader).then(allInviteSettingLiteral))
 
             .then(literal("disband").requires(PartyUtils.partyLeader))
             .then(literal("kickoffline").requires(PartyUtils.partyLeader))
-            .then(literal("leave"))
-            .then(literal("list"))
+            .then(literal("leave").requires(PartyUtils.inParty))
+            .then(literal("list").requires(PartyUtils.inParty))
             .then(literal("mute").requires(PartyUtils.partyModerator))
             .then(literal("poll").requires(PartyUtils.MVPPlusPlusPerks))
             .then(literal("private").requires(PartyUtils.MVPPlusPlusPerks))

@@ -16,6 +16,7 @@ import java.util.function.Predicate
 object PartyUtils {
     private val client: MinecraftClient = MinecraftClient.getInstance()
 
+    var isInParty = false
     private var isPartyLeader = false
     private var isPartyModerator = false
     private var hasMVPPlusPlusPerks = false
@@ -33,6 +34,11 @@ object PartyUtils {
         isPartyModerator
     }
 
+    val inParty = Predicate<FabricClientCommandSource> {
+        requestPartyInfo()
+        isInParty
+    }
+
     val MVPPlusPlusPerks = Predicate<FabricClientCommandSource> {
         hasMVPPlusPlusPerks
     }
@@ -46,6 +52,7 @@ object PartyUtils {
     fun onPartyInfoReceived(packet: HypixelS2CPacket) {
         if (packet !is PartyInfoS2CPacket) return
         partyLastUpdated = System.currentTimeMillis()
+        isInParty = packet.inParty
 
         if (!packet.inParty) {
             isPartyModerator = false
