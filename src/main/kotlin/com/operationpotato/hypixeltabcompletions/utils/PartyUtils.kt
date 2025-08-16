@@ -11,6 +11,7 @@ import net.azureaaron.hmapi.network.packet.v1.s2c.PlayerInfoS2CPacket
 import net.azureaaron.hmapi.network.packet.v2.s2c.PartyInfoS2CPacket
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource
 import net.minecraft.client.MinecraftClient
+import java.util.concurrent.CompletableFuture
 import java.util.function.Predicate
 
 object PartyUtils {
@@ -62,8 +63,10 @@ object PartyUtils {
 
         val memberUUIDs = packet.members ?: return // party members are null when not in a party.
         memberUUIDs.keys.forEach { uuid ->
-            val username = getNameFromUUID(uuid)
-            partyMembers.add(username)
+            CompletableFuture.runAsync {
+                val username = getNameFromUUID(uuid)
+                client.execute { partyMembers.add(username) }
+            }
 
             if (uuid == client.player?.uuid) {
                 isPartyLeader = memberUUIDs[uuid] == PartyRole.LEADER
@@ -75,8 +78,9 @@ object PartyUtils {
     fun onPlayerInfoReceived(packet: HypixelS2CPacket) {
         if (packet !is PlayerInfoS2CPacket) return
         hasMVPPlusPlusPerks = if (packet.playerRank == PlayerRank.NORMAL) {
-            packet.monthlyPackageRank  == MonthlyPackageRank.SUPERSTAR
-        } else { // YouTube, Game Master, Admin
+            packet.monthlyPackageRank == MonthlyPackageRank.SUPERSTAR
+        } else {
+            // YouTube Rank and Staff
             true
         }
     }
@@ -84,7 +88,8 @@ object PartyUtils {
     fun requestPartyInfo(force: Boolean = false) {
         if (!Utils.isOnHypixel()) return
         if (force || (System.currentTimeMillis() - partyLastUpdated > 10_000)) {
-            partyLastUpdated = System.currentTimeMillis() // Update this here to prevent sending multiple requests while waiting for the previous request to come back
+            // Update this here to prevent sending multiple requests while waiting for the previous request to come back
+            partyLastUpdated = System.currentTimeMillis()
             HypixelNetworking.sendPartyInfoC2SPacket(2)
         }
     }
