@@ -1,15 +1,16 @@
 {
-	"required": true,
-	"package": "com.operationpotato.hypixeltabcompletions.mixin",
-	"compatibilityLevel": "JAVA_21",
-	"client": [
-		"CommandDispatcherMixin",
-		"CommandTreeMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"overwrites": {
-		"requireAnnotations": true
+    "required": true,
+    "package": "com.operationpotato.hypixeltabcompletions.mixin",
+    "compatibilityLevel": "JAVA_21",
+    "client": [
+        "ClientCommandSourceMixin",
+        "CommandDispatcherMixin",
+        "CommandTreeMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    },
+    "overwrites": {
+        "requireAnnotations": true
 	}
 }

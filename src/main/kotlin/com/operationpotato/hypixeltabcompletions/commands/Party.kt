@@ -24,8 +24,11 @@ object Party {
             CommandSource.suggestMatching(PartyUtils.partyMembers, builder)
         }
 
-    private val messageArgument: RequiredArgumentBuilder<FabricClientCommandSource, String> =
-        argument("message", StringArgumentType.greedyString())
+    val messageArgument: RequiredArgumentBuilder<FabricClientCommandSource, String> =
+        argument("message", StringArgumentType.greedyString()).suggests { ctx, builder ->
+            PartyUtils.requestPartyInfo()
+            CommandSource.suggestMatching(PartyUtils.partyMembers, builder)
+        }
 
     private val allInviteSettingLiteral: LiteralArgumentBuilder<FabricClientCommandSource> =
         literal("allinvite")
