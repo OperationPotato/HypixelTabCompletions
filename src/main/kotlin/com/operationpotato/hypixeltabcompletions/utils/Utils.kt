@@ -32,8 +32,7 @@ object Utils {
         }
 
         // May need to be replaced with something else in the future...
-        val profileResult = client.sessionService.fetchProfile(playerUUID, false)
-        if (profileResult == null) return ""
+        val profileResult = client.apiServices.sessionService.fetchProfile(playerUUID, false) ?: return ""
         return profileResult.profile.name
     }
 
