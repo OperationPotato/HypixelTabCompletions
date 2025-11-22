@@ -1,6 +1,6 @@
 # Hypixel Tab Completions
 
-A simple 1.21.2-1.21.8 Fabric mod to add tab completions for various Hypixel commands.
+A simple 1.21.2-1.21.11 Fabric mod to add tab completions for various Hypixel commands.
 
 ## Supported Commands
 
