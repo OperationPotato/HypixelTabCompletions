@@ -3,7 +3,7 @@
     "package": "com.operationpotato.hypixeltabcompletions.mixin",
     "compatibilityLevel": "JAVA_21",
     "client": [
-        "ClientCommandSourceMixin",
+        "ClientSuggestionProviderMixin",
         "CommandDispatcherMixin",
         "CommandTreeMixin"
     ],

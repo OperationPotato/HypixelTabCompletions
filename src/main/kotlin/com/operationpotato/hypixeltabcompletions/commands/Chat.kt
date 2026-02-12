@@ -8,7 +8,7 @@ import com.operationpotato.hypixeltabcompletions.utils.Utils
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.argument
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource
-import net.minecraft.command.CommandSource
+import net.minecraft.commands.SharedSuggestionProvider
 
 object Chat {
     // "a", "g", and "skyblock-coop" exist but are excluded to clean up the completions.
@@ -18,7 +18,7 @@ object Chat {
     private val channelSuggestions: RequiredArgumentBuilder<FabricClientCommandSource, String> =
         argument("channel", StringArgumentType.string())
             .suggests { ctx, builder ->
-                CommandSource.suggestMatching(channels, builder)
+                SharedSuggestionProvider.suggest(channels, builder)
             }
 
     private val rawCommandNode: LiteralArgumentBuilder<FabricClientCommandSource> =

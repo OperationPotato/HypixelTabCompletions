@@ -3,7 +3,7 @@ package com.operationpotato.hypixeltabcompletions.mixin;
 import com.operationpotato.hypixeltabcompletions.utils.Utils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.network.ClientCommandSource;
+import net.minecraft.client.multiplayer.ClientSuggestionProvider;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @Environment(EnvType.CLIENT)
-@Mixin(ClientCommandSource.class)
-public class ClientCommandSourceMixin {
-    @Inject(method = "getPlayerNames", at = @At("TAIL"))
+@Mixin(ClientSuggestionProvider.class)
+public class ClientSuggestionProviderMixin {
+    @Inject(method = "getOnlinePlayerNames", at = @At("TAIL"))
     public void getPlayerNames(CallbackInfoReturnable<Collection<String>> cir) {
         if (!Utils.INSTANCE.isOnHypixel()) return;
 

@@ -12,7 +12,7 @@ import net.azureaaron.hmapi.events.HypixelPacketEvents
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource
-import net.minecraft.command.CommandRegistryAccess
+import net.minecraft.commands.CommandBuildContext
 import org.slf4j.Logger
 
 object HypixelTabCompletions : ClientModInitializer {
@@ -26,7 +26,7 @@ object HypixelTabCompletions : ClientModInitializer {
         HypixelPacketEvents.PLAYER_INFO.register(PartyUtils::onPlayerInfoReceived)
     }
 
-    fun registerCommandAliases(dispatcher: CommandDispatcher<FabricClientCommandSource>, registryAccess: CommandRegistryAccess) {
+    fun registerCommandAliases(dispatcher: CommandDispatcher<FabricClientCommandSource>, registryAccess: CommandBuildContext) {
         Friend.registerAliases(dispatcher)
         Guild.registerAliases(dispatcher)
         Party.registerAliases(dispatcher)

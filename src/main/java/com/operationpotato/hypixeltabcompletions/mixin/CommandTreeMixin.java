@@ -7,15 +7,15 @@ import com.operationpotato.hypixeltabcompletions.commands.*;
 import com.operationpotato.hypixeltabcompletions.utils.Utils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.command.CommandSource;
+import net.minecraft.commands.SharedSuggestionProvider;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Environment(EnvType.CLIENT)
-@Mixin(targets = "net.minecraft.network.packet.s2c.play.CommandTreeS2CPacket$CommandTree")
+@Mixin(targets = "net.minecraft.network.protocol.game.ClientboundCommandsPacket$NodeResolver")
 public class CommandTreeMixin {
-    @ModifyExpressionValue(method = "getNode", at = @At(value = "INVOKE", target = "Lnet/minecraft/network/packet/s2c/play/CommandTreeS2CPacket$CommandTree;getNode(I)Lcom/mojang/brigadier/tree/CommandNode;", ordinal = 1))
-    public CommandNode<? extends CommandSource> modifyCommandSuggestions(CommandNode<CommandSource> original) {
+    @ModifyExpressionValue(method = "resolve", at = @At(value = "INVOKE", target = "Lnet/minecraft/network/protocol/game/ClientboundCommandsPacket$NodeResolver;resolve(I)Lcom/mojang/brigadier/tree/CommandNode;", ordinal = 1))
+    public CommandNode<? extends SharedSuggestionProvider> modifyCommandSuggestions(CommandNode<SharedSuggestionProvider> original) {
         if (!Utils.INSTANCE.isOnHypixel() || !(original instanceof LiteralCommandNode<?> literal)) return original;
         String name = literal.getLiteral();
 

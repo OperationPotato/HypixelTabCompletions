@@ -9,8 +9,8 @@ import com.operationpotato.hypixeltabcompletions.utils.Utils
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.argument
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource
-import net.minecraft.command.EntitySelector
-import net.minecraft.command.argument.EntityArgumentType
+import net.minecraft.commands.arguments.selector.EntitySelector
+import net.minecraft.commands.arguments.EntityArgument
 
 object Guild {
     private val messageArgument: RequiredArgumentBuilder<FabricClientCommandSource, String> =
@@ -20,7 +20,7 @@ object Guild {
         argument("name", StringArgumentType.greedyString())
 
     private val playerArgument: RequiredArgumentBuilder<FabricClientCommandSource, EntitySelector> =
-        argument("player", EntityArgumentType.player())
+        argument("player", EntityArgument.player())
 
     private val memberArgument: RequiredArgumentBuilder<FabricClientCommandSource, String> =
         argument("member", StringArgumentType.string())

@@ -10,12 +10,12 @@ import net.azureaaron.hmapi.network.packet.s2c.HypixelS2CPacket
 import net.azureaaron.hmapi.network.packet.v1.s2c.PlayerInfoS2CPacket
 import net.azureaaron.hmapi.network.packet.v2.s2c.PartyInfoS2CPacket
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource
-import net.minecraft.client.MinecraftClient
+import net.minecraft.client.Minecraft
 import java.util.concurrent.CompletableFuture
 import java.util.function.Predicate
 
 object PartyUtils {
-    private val client: MinecraftClient = MinecraftClient.getInstance()
+    private val client: Minecraft = Minecraft.getInstance()
 
     var isInParty = false
     private var isPartyLeader = false
