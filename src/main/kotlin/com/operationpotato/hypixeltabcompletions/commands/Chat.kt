@@ -17,7 +17,7 @@ object Chat {
 
     private val channelSuggestions: RequiredArgumentBuilder<FabricClientCommandSource, String> =
         argument("channel", StringArgumentType.string())
-            .suggests { ctx, builder ->
+            .suggests { _, builder ->
                 SharedSuggestionProvider.suggest(channels, builder)
             }
 

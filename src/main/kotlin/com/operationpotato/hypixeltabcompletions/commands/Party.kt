@@ -19,13 +19,13 @@ object Party {
         argument("player", EntityArgument.player())
 
     private val partyMemberSuggestion: RequiredArgumentBuilder<FabricClientCommandSource, String> =
-        argument("member", StringArgumentType.string()).suggests { ctx, builder ->
+        argument("member", StringArgumentType.string()).suggests { _, builder ->
             PartyUtils.requestPartyInfo()
             SharedSuggestionProvider.suggest(PartyUtils.partyMembers, builder)
         }
 
     val messageArgument: RequiredArgumentBuilder<FabricClientCommandSource, String> =
-        argument("message", StringArgumentType.greedyString()).suggests { ctx, builder ->
+        argument("message", StringArgumentType.greedyString()).suggests { _, builder ->
             PartyUtils.requestPartyInfo()
             SharedSuggestionProvider.suggest(PartyUtils.partyMembers, builder)
         }

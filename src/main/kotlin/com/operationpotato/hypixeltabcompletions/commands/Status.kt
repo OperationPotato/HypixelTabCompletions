@@ -14,7 +14,7 @@ object Status {
     private val options = listOf("online", "away", "busy", "offline")
 
     private val statusSuggestions: RequiredArgumentBuilder<FabricClientCommandSource, String> =
-        argument("status", StringArgumentType.string()).suggests { ctx, builder ->
+        argument("status", StringArgumentType.string()).suggests { _, builder ->
             SharedSuggestionProvider.suggest(options, builder)
         }
 
