@@ -87,6 +87,11 @@ object Guild {
     @JvmStatic
     val commandNode: LiteralCommandNode<FabricClientCommandSource> = rawCommandNode.build()
 
+    private val aliasRawCommandNode = literal("g").redirect(commandNode)
+
+    @JvmStatic
+    val aliasCommandNode: LiteralCommandNode<FabricClientCommandSource> = aliasRawCommandNode.build()
+
     fun registerAliases(dispatcher: CommandDispatcher<FabricClientCommandSource>) {
         dispatcher.register(rawCommandNode)
         dispatcher.register(literal("g").redirect(commandNode))

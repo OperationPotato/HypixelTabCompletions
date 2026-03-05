@@ -24,6 +24,7 @@ public class CommandTreeMixin {
             case "p" -> Party.getAliasCommandNode();
             case "pc" -> PartyChat.getCommandNode();
             case "pchat" -> PartyChat.getAliasCommandNode();
+            case "g" -> Guild.getAliasCommandNode();
             case "guild" -> Guild.getCommandNode();
             case "friend" -> Friend.getCommandNode();
             case "fl" -> FriendsList.getCommandNode();
