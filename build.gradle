@@ -1,5 +1,5 @@
 plugins {
-    id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
+    id 'net.fabricmc.fabric-loom' version "${loom_version}"
     id 'maven-publish'
     id "org.jetbrains.kotlin.jvm" version "2.3.0"
 }
@@ -35,14 +35,13 @@ repositories {
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings loom.officialMojangMappings()
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
-    modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+    implementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
 
-    include modImplementation("net.azureaaron:hm-api:${project.hm_api_version}")
-    modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:${project.dev_auth_version}")
+    include implementation("net.azureaaron:hm-api:${project.hm_api_version}")
+    runtimeOnly("me.djtheredstoner:DevAuth-fabric:${project.dev_auth_version}")
 }
 
 processResources {
@@ -53,18 +52,18 @@ processResources {
                 "minecraft_version": project.minimum_minecraft_version,
                 "fabric_api_version": project.minimum_fabric_api_version,
                 "fabric_kotlin_version": project.fabric_kotlin_version,
-                "java_version": 21
+                "java_version": 25
         )
     }
 }
 
 tasks.withType(JavaCompile).configureEach {
-    it.options.release = 21
+    it.options.release = 25
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
     kotlinOptions {
-        jvmTarget = 21
+        jvmTarget = 25
     }
 }
 
@@ -74,8 +73,8 @@ java {
     // If you remove this line, sources will not be generated.
     //    withSourcesJar()
 
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
 }
 
 jar {
