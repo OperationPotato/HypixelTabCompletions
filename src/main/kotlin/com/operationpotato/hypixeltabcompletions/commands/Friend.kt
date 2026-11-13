@@ -36,6 +36,7 @@ object Friend {
             .then(literal("deny").then(playerArgument))
 
             .then(literal("best").then(friendArgument))
+            .then(literal("remove").then(friendArgument))
 
             .then(literal("nickname").then(friendNickArguments))
 
@@ -44,7 +45,6 @@ object Friend {
 
             .then(literal("help"))
             .then(literal("notifications"))
-            .then(literal("remove"))
             .then(literal("removeall"))
 
     @JvmStatic
