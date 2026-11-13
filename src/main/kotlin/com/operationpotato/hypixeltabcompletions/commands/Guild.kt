@@ -49,6 +49,7 @@ object Guild {
             .then(literal("demote").then(memberArgument))
             .then(literal("promote").then(memberArgument))
             .then(literal("transfer").then(memberArgument))
+            .then(literal("member").then(memberArgument))
 
             .then(literal("kick").then(memberKickReasonArguments))
 
@@ -65,7 +66,6 @@ object Guild {
             .then(literal("info"))
             .then(literal("leave"))
             .then(literal("log"))
-            .then(literal("member"))
             .then(literal("members"))
             .then(literal("menu"))
             .then(literal("motd"))
