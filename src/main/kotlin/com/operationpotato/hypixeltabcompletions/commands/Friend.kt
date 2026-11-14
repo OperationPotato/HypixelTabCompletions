@@ -28,6 +28,9 @@ object Friend {
     private val pageArgument: RequiredArgumentBuilder<FabricClientCommandSource, Int> =
         argument("page", IntegerArgumentType.integer(1))
 
+    private val unknownArgument: RequiredArgumentBuilder<FabricClientCommandSource, String> =
+        argument("arg", StringArgumentType.greedyString())
+
     private val rawCommandNode: LiteralArgumentBuilder<FabricClientCommandSource> =
         literal("friend")
             .requires(Utils.onHypixel)
@@ -43,9 +46,10 @@ object Friend {
             .then(literal("list").then(pageArgument))
             .then(literal("requests").then(pageArgument))
 
+            .then(literal("removeall").then(unknownArgument))
+
             .then(literal("help"))
             .then(literal("notifications"))
-            .then(literal("removeall"))
 
     @JvmStatic
     val commandNode: LiteralCommandNode<FabricClientCommandSource> = rawCommandNode.build()
