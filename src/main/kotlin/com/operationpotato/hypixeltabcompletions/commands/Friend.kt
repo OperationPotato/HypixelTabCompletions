@@ -43,7 +43,10 @@ object Friend {
 
             .then(literal("nickname").then(friendNickArguments))
 
-            .then(literal("list").then(pageArgument))
+            .then(literal("list")
+                .then(pageArgument)
+                .then(literal("best"))
+            )
             .then(literal("requests").then(pageArgument))
 
             .then(literal("removeall").then(unknownArgument))
