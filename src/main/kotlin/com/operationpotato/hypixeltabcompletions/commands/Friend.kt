@@ -45,7 +45,7 @@ object Friend {
 
             .then(literal("list")
                 .then(pageArgument)
-                .then(literal("best"))
+                .then(literal("best").then(pageArgument))
             )
             .then(literal("requests").then(pageArgument))
 
