@@ -21,7 +21,7 @@ pluginManagement {
 
 plugins {
 	id("dev.kikugie.stonecutter") version "0.10"
-	id("com.operationpotato.versioned-catalogs") version "1.0.1"
+	id("com.operationpotato.versioned-catalogs") version "1.1.0"
 }
 
 rootProject.name = "hypixel-tab-completions"

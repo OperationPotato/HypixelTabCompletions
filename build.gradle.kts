@@ -86,21 +86,3 @@ java {
     sourceCompatibility = JavaVersion.VERSION_25
     targetCompatibility = JavaVersion.VERSION_25
 }
-
-tasks.named("assemble") {
-    doLast {
-        val fileName = "${base.archivesName.get()}-$version.jar"
-        val sourceFile = project.projectDir.resolve("build/libs/${fileName}")
-        val targetFile = rootProject.projectDir.resolve("build/libs/${fileName}")
-        targetFile.parentFile.mkdirs()
-        targetFile.writeBytes(sourceFile.readBytes())
-    }
-}
-
-tasks.named("clean") {
-    doLast {
-        val libsFolder = rootProject.projectDir.resolve("build/libs")
-        if (!libsFolder.exists()) return@doLast
-        delete(libsFolder)
-    }
-}
